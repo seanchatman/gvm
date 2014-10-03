@@ -1,8 +1,9 @@
 FROM java:8
 MAINTAINER Sean Chatman <xpointsh@gmail.com>
 
-RUN curl -s get.gvmtool.net | bash
+# Download and Install GVM
+RUN curl http://api.gvmtool.net -o /tmp/gvm-install.sh
+RUN chmod 744 /tmp/gvm-install.sh
+RUN /tmp/gvm-install.sh
 
-WORKDIR /root/.gvm/bin
-
-RUN ./gvm-init.sh
+ADD config /root/.gvm/etc/config
